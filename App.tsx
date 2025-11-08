@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { SafeAreaView, StyleSheet } from "react-native";
+import AnimatedValue from "./animations/AnimatedValue";
+import ScrollInterpolation from "./animations/ScrollInterpolation";
+import Interpolation from "./animations/Interpolation";
+import AnimatedEventExample from "./animations/AnimatedEventExample";
+import SpringExample from "./animations/SpringExample";
+import DecayExample from "./animations/DecayExample";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <AnimatedValue />
+      {/* <Interpolation/> */}
+      {/* <ScrollInterpolation /> */}
+      {/* <AnimatedEventExample /> */}
+      {/* <SpringExample /> */}
+      <DecayExample />
+
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    paddingTop: 24,
+    paddingHorizontal: 16,
   },
 });
