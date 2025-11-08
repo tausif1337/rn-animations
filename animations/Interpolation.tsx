@@ -23,6 +23,11 @@ export default function Interpolation() {
     outputRange: [0, 250], // move from 0px → 250px
   });
 
+  const moveY = anim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, -250], // move from 0px → 250px
+  });
+
   const boxSize = anim.interpolate({
     inputRange: [0, 1],
     outputRange: [50, 150], // grow from 50px → 150px
@@ -40,7 +45,7 @@ export default function Interpolation() {
         style={[
           styles.box,
           {
-            transform: [{ translateX: moveX }],
+            transform: [{ translateX: moveX }, { translateY: moveY }],
             width: boxSize,
             height: boxSize,
             backgroundColor: boxColor,
