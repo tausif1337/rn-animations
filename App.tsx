@@ -10,12 +10,12 @@ import DecayExample from "./animations/DecayExample";
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <AnimatedValue />
+      {/* <AnimatedValue /> */}
       {/* <Interpolation/> */}
       {/* <ScrollInterpolation /> */}
-      {/* <AnimatedEventExample /> */}
+      <AnimatedEventExample />
       {/* <SpringExample /> */}
-      <DecayExample />
+      {/* <DecayExample /> */}
 
     </SafeAreaView>
   );

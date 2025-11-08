@@ -1,54 +1,50 @@
 import React, { useRef } from "react";
-import { View, Animated, ScrollView, StyleSheet } from "react-native";
+import { Animated, StyleSheet, View } from "react-native";
 
-export default function AnimatedEventExample() {
-  const scrollY = useRef(new Animated.Value(0)).current; // 1️⃣ Create animated value
+const AnimatedEventExample = () => {
+  const scrollY = useRef(new Animated.Value(0)).current;
+
+  const translateY = scrollY.interpolate({
+    inputRange: [0, 150],
+    outputRange: [0, -150],
+    extrapolate: "clamp",
+  });
+
+  const handleScroll = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+    { useNativeDriver: true }
+  );
 
   return (
     <View style={styles.container}>
-      {/* 2️⃣ Animated Circle */}
       <Animated.View
-        style={[
-          styles.circle,
-          {
-            transform: [
-              {
-                translateY: scrollY.interpolate({
-                  inputRange: [0, 300],
-                  outputRange: [0, 200], // move 200px when scrolled 300px
-                  extrapolate: "clamp",
-                }),
-              },
-            ],
-          },
-        ]}
+        style={[styles.box, { transform: [{ translateY }] }]}
       />
-
-      {/* 3️⃣ ScrollView drives scrollY using Animated.event */}
       <Animated.ScrollView
-        style={styles.scroll}
-        scrollEventThrottle={16} // updates ~60fps
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: true } // use native thread for smoothness
-        )}
-      >
-        <View style={{ height: 1000 }} />
-      </Animated.ScrollView>
+        contentContainerStyle={styles.content}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: { flex: 1 },
-  scroll: { flex: 1 },
-  circle: {
+  container: {
+    flex: 1,
+  },
+  content: {
+    height: 1000,
+  },
+  box: {
     position: "absolute",
-    top: 100,
-    left: 150,
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+    top: 0,
+    alignSelf: "center",
+    width: 100,
+    height: 100,
     backgroundColor: "tomato",
+    borderRadius: 8,
   },
 });
+
+export default AnimatedEventExample;
