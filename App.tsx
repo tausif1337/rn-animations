@@ -1,18 +1,18 @@
 import React from "react";
 import { StyleSheet } from "react-native";
-// import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import AnimatedDemo from "./components/AnimatedDemo";
+import GestureHandlerExample from "./animations/GestureHandlerExample";
 
 export default function App() {
   return (
-    // <GestureHandlerRootView style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <SafeAreaProvider>
         <SafeAreaView edges={["top"]} style={styles.safeArea}>
-          <AnimatedDemo />
+          <GestureHandlerExample />
         </SafeAreaView>
       </SafeAreaProvider>
-    // </GestureHandlerRootView>
+    </GestureHandlerRootView>
   );
 }
 
